@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Foodapp</title>
+</head>
+<body>
+<form action="{% url 'food:show_res' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="text_input" value=""/><br>
+    <input type="radio" name="t_food" value="food" /> อาหาร
+    <input type="radio" name="t_food" value="drink" /> เครื่องดื่ม  <br>
+    <input type="submit" value="ค้นหา"> <br>
+    {% if list_name_r %}
+    <ul>
+    {% for restaurant in list_name_r %}
+    <li><a href="{% url 'food:detail_res' restaurant.id %}">{{ restaurant.name }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+</form>
+</body>
+</html>
+

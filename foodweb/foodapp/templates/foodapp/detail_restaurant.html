@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ restaurant.name }}</h1>
+<h4>สถานที่ : {{restaurant.location}}</h4>
+<h4>เวลาเปิด-ปิด : {{restaurant.time}}</h4>
+<h4>เบอร์โทร : {{restaurant.number}}</h4>
+<ul>
+{% for menu in restaurant.menu_set.all %}
+    <li>{{ menu.name }}</li>
+{% endfor %}
+
+</ul>
+<hr>
+<h2>รีวิวร้าน</h2>
+<ul>
+{% for reviews in restaurant.reviews_set.all %}
+    <li>{{ reviews.reviews_text }}  ----  {{ reviews.point }} คะแนน</li>
+{% endfor %}
+</ul>
+</body>
+</html>
