@@ -10,4 +10,9 @@ urlpatterns = [
     path('', views.show_restaurant, name='show_res'),
 
     path('<int:restaurant_id>/', views.detail_restaurant, name='detail_res'),
+
+    path('<int:restaurant_id>/review', views.reviwe_restaurant, name='review_res'),
+
+    # path('', views.search_restaurant, name=''),
+
 ]

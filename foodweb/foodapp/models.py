@@ -6,7 +6,7 @@ class Restaurant(models.Model):
     type = models.CharField(max_length=200)
     number = models.CharField(max_length=20)
     time = models.CharField(max_length=200)
-    location = models.CharField(max_length=200)
+    location = models.TextField(max_length=200)
 
 
     def __str__(self):
@@ -23,5 +23,5 @@ class Reviews(models.Model):
     reviews = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     reviews_text = models.CharField(max_length=500)
     point = models.IntegerField(default=0)
-
+    review_date = models.DateTimeField('date published')
 

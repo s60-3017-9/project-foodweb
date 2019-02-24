@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <a href="{% url 'food:show_res' %}">กลับ</a>
 </head>
 <body>
 <h1>{{ restaurant.name }}</h1>
 <h4>สถานที่ : {{restaurant.location}}</h4>
 <h4>เวลาเปิด-ปิด : {{restaurant.time}}</h4>
 <h4>เบอร์โทร : {{restaurant.number}}</h4>
+
 <ul>
 {% for menu in restaurant.menu_set.all %}
     <li>{{ menu.name }}</li>
@@ -17,9 +19,24 @@
 </ul>
 <hr>
 <h2>รีวิวร้าน</h2>
+<form action="{% url 'food:review_res' restaurant.id  %}" method="post">
+    {% csrf_token %}
+    <h5>คะแนน :
+    <input type="radio" name="point" value="1" /> 1
+    <input type="radio" name="point" value="2" /> 2
+    <input type="radio" name="point" value="3" /> 3
+    <input type="radio" name="point" value="4" /> 4
+    <input type="radio" name="point" value="5" /> 5
+    </h5>
+    <textarea name= "review" cols= "45" rows= "5"></textarea> <br>
+    <input type="submit" value="ยืนยัน">{{error}}
+</form>
 <ul>
-{% for reviews in restaurant.reviews_set.all %}
-    <li>{{ reviews.reviews_text }}  ----  {{ reviews.point }} คะแนน</li>
+{% for reviews in restaurant_reviews %}
+    <li>{{ reviews.reviews_text }}</li>
+    <li>{{ reviews.point }} คะแนน</li>
+    <li>{{ reviews.review_date }}</li>
+    <hr>
 {% endfor %}
 </ul>
 </body>

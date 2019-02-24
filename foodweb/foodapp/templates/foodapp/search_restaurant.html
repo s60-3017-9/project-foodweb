@@ -5,12 +5,12 @@
     <title>Foodapp</title>
 </head>
 <body>
-<form action="{% url 'food:show_res' %}" method="post">
+<form action="{% url 'food:show_res' %}" method="get">
     {% csrf_token %}
-    <input type="text" name="text_input" value=""/><br>
+    <input type="text" name="text_input"/><br>
     <input type="radio" name="t_food" value="food" /> อาหาร
     <input type="radio" name="t_food" value="drink" /> เครื่องดื่ม  <br>
-    <input type="submit" value="ค้นหา"> <br>
+    <input type="submit" value="ค้นหา">{{error}} <br>
     {% if list_name_r %}
     <ul>
     {% for restaurant in list_name_r %}
@@ -18,6 +18,7 @@
     {% endfor %}
     </ul>
     {% endif %}
+
 </form>
 </body>
 </html>
