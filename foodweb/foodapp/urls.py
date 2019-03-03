@@ -13,6 +13,8 @@ urlpatterns = [
 
     path('<int:restaurant_id>/review', views.reviwe_restaurant, name='review_res'),
 
+    path('<int:restaurant_id>/random_menu', views.random_menu_restaurant, name='random_res'),
+
     # path('', views.search_restaurant, name=''),
 
 ]

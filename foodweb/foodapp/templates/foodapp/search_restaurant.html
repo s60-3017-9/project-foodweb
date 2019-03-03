@@ -5,6 +5,7 @@
     <title>Foodapp</title>
 </head>
 <body>
+<h1>ร้านอาหารหลังมอ</h1>
 <form action="{% url 'food:show_res' %}" method="get">
     {% csrf_token %}
     <input type="text" name="text_input"/><br>

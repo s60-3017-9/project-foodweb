@@ -10,7 +10,11 @@
 <h4>สถานที่ : {{restaurant.location}}</h4>
 <h4>เวลาเปิด-ปิด : {{restaurant.time}}</h4>
 <h4>เบอร์โทร : {{restaurant.number}}</h4>
-
+<form action="{% url 'food:random_res' restaurant.id  %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="สุ่มเมนูอาหาร">
+    <input type="text" name="txt_random" value="{{menu_random}}" size="30" maxlength="30" disabled="disabled" />
+</form>
 <ul>
 {% for menu in restaurant.menu_set.all %}
     <li>{{ menu.name }}</li>

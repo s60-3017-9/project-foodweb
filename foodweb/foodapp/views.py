@@ -3,6 +3,7 @@ from .models import Restaurant,Menu,Reviews
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
+import random
 # Create your views here.
 
 
@@ -53,6 +54,21 @@ def reviwe_restaurant(request,restaurant_id):
         except (KeyError):
             context = {'restaurant': restaurant, 'error': 'ใส่คะแนนรีวิว','restaurant_reviews':restaurant.reviews_set.all().order_by('-review_date')}
             return render(request, 'foodapp/detail_restaurant.html', context)
+
+def random_menu_restaurant(request,restaurant_id):
+    restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
+    try:
+        menu = restaurant.menu_set.all()
+        menu_random = random.choice(menu)
+        context = {'restaurant': restaurant,
+                   'restaurant_reviews': restaurant.reviews_set.all().order_by('-review_date'),
+                   'menu_random': menu_random}
+
+    except (IndexError):
+        return HttpResponseRedirect(reverse('food:detail_res', args=str(restaurant.id)))
+    else:
+        return render(request, 'foodapp/detail_restaurant.html', context)
+
 
 
 
